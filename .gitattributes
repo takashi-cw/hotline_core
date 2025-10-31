@@ -1,0 +1,15 @@
+# Normalize line endings for cross-platform compatibility
+* text=auto
+
+# Treat markdown and text files as UTF-8
+*.md text working-tree-encoding=UTF-8
+*.txt text working-tree-encoding=UTF-8
+
+# Keep LF line endings for code files
+*.py text eol=lf
+*.js text eol=lf
+*.sh text eol=lf
+
+# Exclude macOS metadata and backups
+.DS_Store export-ignore
+*.bak export-ignore
