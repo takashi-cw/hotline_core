@@ -38,6 +38,11 @@ ronbun-core/
 
 ---
 
+### 🗒️更新履歴
+- 2025/10/31：Connected via VSCode ✅
+
+---
+
 ## 💬 連絡先  
 お問い合わせ・コラボ・転載許可などは  
 [しがたかしホッとライン](shigatakashi_cw@gmail.com)  
