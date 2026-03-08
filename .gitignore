@@ -1,18 +1,16 @@
-# macOS system files
+# macOS
 .DS_Store
 
-# Python / notebook / cache
+# Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .ipynb_checkpoints/
 
-# Logs
+# Logs / temp
 *.log
 logs/
-
-# Temporary / export / cache files
 *.tmp
 *.bak
 *.swp
@@ -20,24 +18,24 @@ logs/
 *.cache
 *.out
 
-# Data (if you want to keep sensitive or large data out)
-data/outputs/
-data/sandbox/
-
-# Images - keep only processed or selected ones
-images/raw/
-images/tmp/
-images/.DS_Store
-
-# Local editor files
+# Editor
 .vscode/
 .idea/
 
-# Node / web (if you ever add JS tools)
+# Node (if used)
 node_modules/
 dist/
 build/
 
-# OS metadata
+# Secrets / keys
+.env
+.env.local
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Windows metadata
 Thumbs.db
 ehthumbs.db
