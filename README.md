@@ -6,6 +6,7 @@
 - Zenodo公開論文の原文と付随情報を論文単位で管理する
 
 ## ディレクトリ構成
+
 text ... 
 hotline_core/
 ├── stories/
