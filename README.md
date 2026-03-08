@@ -8,14 +8,11 @@
 ## ディレクトリ構成
 hotline_core/
 ├── stories/
-│   └── <work-slug>/
-│       ├── story.md
-│       └── images/
+│       
 └── papers/
-    └── <paper-slug>/
-        ├── paper.md
-        ├── assets/
-        └── meta.yaml
+
+※2026/03/08：ディレクトリ構成を変更。
+
 
 ## 運用ルール
 - 1作品/1論文ごとにフォルダを作る
