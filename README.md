@@ -9,8 +9,7 @@
 
 ```text
 hotline_core/
-├── stories/
-│       
+├── stories/   
 └── papers/
 ```
 
@@ -22,6 +21,10 @@ hotline_core/
 - Markdown本文と画像・図表を同じフォルダ配下に置く
 - 画像参照は相対パスを使う
 - 公開済み論文は `papers/<paper-slug>/meta.yaml` に DOI と URL を記録する
+
+## 目次
+
+※これから加筆。
 
 ## ライセンス
 - 詳細は `LICENSE.md` を参照
