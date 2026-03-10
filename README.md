@@ -13,9 +13,6 @@ hotline_core/
 └── papers/
 ```
 
-※2026/03/08：ディレクトリ構成を変更。
-
-
 ## 運用ルール
 - 1作品/1論文ごとにフォルダを作る
 - Markdown本文と画像・図表を同じフォルダ配下に置く
@@ -24,7 +21,13 @@ hotline_core/
 
 ## 目次
 
-※これから加筆。
+papers/Coordinate_System_Misconception
+→ v4："Self-Correction: Swiss Ephemeris Coordinate System 自己再検証：Swiss Ephemeris の座標系実装について"
 
 ## ライセンス
 - 詳細は `LICENSE.md` を参照
+
+## 更新履歴
+
+2026/03/08：ディレクトリ構成を変更。
+2026/03/10：papers/Coordinate_System_Misconception 追加
