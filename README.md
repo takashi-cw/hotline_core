@@ -20,7 +20,7 @@ hotline_core/
 - 1作品/1論文ごとにフォルダを作る
 - Markdown本文と画像・図表を同じフォルダ配下に置く
 - 画像参照は相対パスを使う
-- 公開済み論文は `papers/<paper-slug>/meta.yaml` に DOI と URL を記録する
+- 公開済み論文は `papers/<paper-slug> DOI と URL を記録する
 
 ## 目次
 

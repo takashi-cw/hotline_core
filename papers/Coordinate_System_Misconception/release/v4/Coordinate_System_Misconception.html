@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Self-Correction: Swiss Ephemeris Coordinate System</title>
+  <style>
+
+    @page { margin: 1cm 2cm; }
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+      p, h2, h3 {
+        orphans: 4;
+        widows: 4;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+      pre, code, table, blockquote, figure {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      p { page-break-inside: avoid; break-inside: avoid; }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: break-word;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Self-Correction: Swiss Ephemeris Coordinate
+System</h1>
+</header>
+<h1
+id="自己再検証swiss-ephemeris-の座標系実装について">自己再検証：Swiss
+Ephemeris の座標系実装について</h1>
+<h2 id="前報v3の訂正と正しい検証結果">─ 前報（v3）の訂正と正しい検証結果
+─</h2>
+<p><strong>Self-Correction: On the Coordinate System Implementation of
+Swiss Ephemeris</strong><br />
+<strong>— Correction of Previous Report (v3) and Verified Results
+—</strong></p>
+<hr />
+<h2 id="論文情報">📋 論文情報</h2>
+<ul>
+<li><strong>著者</strong>: Stella.me OS 開発者　志賀高史（Takashi
+Shiga）</li>
+<li><strong>発表日</strong>: 2026年（前報公開後、再検証）</li>
+<li><strong>バージョン</strong>: v4（訂正版）</li>
+<li><strong>ステータス</strong>:
+公開済（査読前プレプリント・訂正版）</li>
+<li><strong>DOI</strong>: https://doi.org/10.5281/zenodo.18772796</li>
+<li><strong>訂正元論文（v3）DOI</strong>:
+https://doi.org/10.5281/zenodo.18767251</li>
+<li><strong>分類</strong>:
+占星術ソフトウェア工学、天体暦システム、座標系解析</li>
+<li><strong>キーワード</strong>: Swiss Ephemeris, J2000, of-date,
+座標系, 歳差運動, Skyfield, フレーム検証, 訂正</li>
+</ul>
+<hr />
+<h2 id="本論文について">⚠️ 本論文について</h2>
+<p>本論文は、著者が Zenodo に公開した前報（v3、DOI:
+https://doi.org/10.5281/zenodo.18767251）の<strong>重大な誤りを訂正する</strong>ものである。</p>
+<p>前報は「Swiss Ephemeris の tropical 出力は実際には J2000
+座標系である」と主張したが、公開後の自己再検証により、この結論が<strong>検証スクリプトのフレームラベルの誤りに起因する</strong>ことが判明した。</p>
+<p>本論文で示す正しい結論は以下の通りである：</p>
+<blockquote>
+<p><strong>Swiss Ephemeris
+はドキュメントに記載されている通り、of-date（tropical）黄道座標を正しく実装している。</strong></p>
+</blockquote>
+<hr />
+<h2 id="要旨abstract">要旨（Abstract）</h2>
+<h3 id="日本語">日本語</h3>
+<p>前報（v3）において、著者は Swiss Ephemeris の “tropical”
+出力が実際には J2000
+座標系であると主張した。しかし公開後、検証に使用した Skyfield
+の座標系フレームのラベルが逆転していたことが判明した。具体的には、Skyfield
+の <code>ecliptic_frame</code>（実際は of-date フレーム）を “J2000”
+と誤ってラベルし、<code>ecliptic_latlon()</code>（J2000
+相当の値を返す）を “of-date” と誤ってラベルしていた。</p>
+<p>正しいフレームで再検証した結果、Swiss Ephemeris
+の太陽黄経（1983年7月5日：102.69463°）は Skyfield の
+<code>ecliptic_frame</code>（of-date）と <strong>0.032
+秒角以内で一致</strong>し、<code>ecliptic_J2000_frame</code>（J2000
+固定）とは <strong>846
+秒角（17年分の歳差）の差</strong>があることが確認された。</p>
+<p>これは Swiss Ephemeris がドキュメント通り of-date
+座標系を正しく実装していることを意味する。前報の核心的主張「Swiss =
+J2000」および関連する「二重補正問題」の記述は誤りであり、ここに訂正する。</p>
+<p>また、今回の経験は天文計算ライブラリを用いた座標系検証における重要な教訓を示している。フレーム名が直感に反する命名を持つ場合、ライブラリのドキュメントまたは既知の数値での事前検証が不可欠である。</p>
+<h3 id="english">English</h3>
+<p>In the previous report (v3), the author claimed that Swiss
+Ephemeris’s “tropical” output is actually in the J2000 coordinate
+system. However, after publication, it was discovered that the Skyfield
+coordinate frame labels used in the verification scripts were reversed.
+Specifically, Skyfield’s <code>ecliptic_frame</code> (which is actually
+an of-date frame) was incorrectly labeled as “J2000”, and
+<code>ecliptic_latlon()</code> (which returns J2000-equivalent values)
+was incorrectly labeled as “of-date”.</p>
+<p>Re-verification with the correct frame labels confirmed that Swiss
+Ephemeris’s solar longitude (July 5, 1983: 102.69463°) matches
+Skyfield’s <code>ecliptic_frame</code> (of-date) <strong>within 0.032
+arcseconds</strong>, and differs from <code>ecliptic_J2000_frame</code>
+(J2000 fixed) by <strong>846 arcseconds</strong> (equivalent to 17 years
+of precession).</p>
+<p>This demonstrates that Swiss Ephemeris correctly implements the
+of-date coordinate system as documented. The central claim of the
+previous report—“Swiss = J2000”—and the associated description of a
+“double correction problem” were erroneous and are hereby corrected.</p>
+<p>This experience also provides an important lesson for coordinate
+system verification using astronomical libraries: when frame names have
+counter-intuitive naming, pre-verification against known numerical
+values or library documentation is essential.</p>
+<p><strong>Keywords:</strong> astrological software, ephemeris,
+coordinate systems, J2000, of-date, Swiss Ephemeris, precession,
+Skyfield, frame verification, erratum</p>
+<hr />
+<h2 id="経緯background">1. 経緯（Background）</h2>
+<h3 id="前報v3の主張">1.1 前報（v3）の主張</h3>
+<p>前報（v3、2026年2月25日公開）において著者は以下を主張した：</p>
+<ol type="1">
+<li>Swiss Ephemeris の “tropical” 出力は実際には J2000 座標系である</li>
+<li>Swiss Ephemeris のドキュメントが示す “of-date”
+という記述は実装と乖離している</li>
+<li>of-date
+ベースでサイデリアル計算を行うと「二重補正問題」が発生する</li>
+</ol>
+<p>これらの主張は、Skyfield
+を用いた数値比較に基づいていた。具体的には：</p>
+<ul>
+<li>Skyfield で “J2000” として計算した値：102.69464°</li>
+<li>Swiss Ephemeris の tropical 出力：102.69462°</li>
+<li>両者の差：0.00002°（ほぼ完全一致）</li>
+</ul>
+<p>この一致から「Swiss = J2000」と結論づけた。</p>
+<h3 id="問題の発見">1.2 問題の発見</h3>
+<p>前報公開後、著者は検証スクリプトの再点検を行った。その過程で、Skyfield
+のフレーム定義を改めて調査したところ、<strong>前報で “J2000”
+とラベルしていた計算が実際には of-date
+フレームを使用していた</strong>ことが判明した。</p>
+<p><strong>問題のあったコード（v3）:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skyfield.framelib <span class="im">import</span> ecliptic_frame  <span class="co"># ← of-dateフレームである</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># v3では誤って &quot;J2000&quot; とラベル</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>j2000_ecliptic <span class="op">=</span> apparent.frame_latlon(ecliptic_frame)   <span class="co"># 実際はof-date</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>skyfield_j2000 <span class="op">=</span> j2000_ecliptic[<span class="dv">1</span>].degrees</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># v3では誤って &quot;of-date&quot; とラベル</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ofdate_ecliptic <span class="op">=</span> apparent.ecliptic_latlon()              <span class="co"># 実際はJ2000相当</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>skyfield_ofdate <span class="op">=</span> ofdate_ecliptic[<span class="dv">1</span>].degrees</span></code></pre></div>
+<p>Skyfield における各フレームの正しい定義：</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Skyfield API</th>
+<th>正しい定義</th>
+<th>v3でのラベル（誤り）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ecliptic_frame</code></td>
+<td><strong>of-date</strong>（当代の黄道フレーム、歳差込み）</td>
+<td>“J2000”（誤）</td>
+</tr>
+<tr>
+<td><code>ecliptic_J2000_frame</code></td>
+<td><strong>J2000 固定</strong>（歳差なし）</td>
+<td>未使用</td>
+</tr>
+<tr>
+<td><code>ecliptic_latlon()</code></td>
+<td><strong>J2000
+相当</strong>（<code>ecliptic_J2000_frame</code>と同値）</td>
+<td>“of-date”（誤）</td>
+</tr>
+</tbody>
+</table>
+<p>この誤りにより、前報では Swiss と “J2000”（実際は
+of-date）が一致したことを根拠に「Swiss = J2000」と誤結論した。</p>
+<hr />
+<h2 id="正しい検証方法corrected-methodology">2.
+正しい検証方法（Corrected Methodology）</h2>
+<h3 id="フレームの事前検証">2.1 フレームの事前検証</h3>
+<p>Skyfield
+のフレームを使用する際は、まず<strong>既知の歳差量との整合性を確認する</strong>ことが不可欠である。</p>
+<p>2025年1月1日を例に取ると、J2000から25年後の歳差量は：</p>
+<pre><code>25年 × 50.29&quot;/年 ≈ 1257秒角 ≈ 0.349°</code></pre>
+<p>この値が各フレームの差分として現れるかを確認する：</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skyfield.framelib <span class="im">import</span> ecliptic_frame, ecliptic_J2000_frame</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 太陽の2025年1月1日の黄経を各フレームで計算</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>lon_ecliptic_frame    <span class="co"># ecliptic_frame</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lon_j2000_frame       <span class="co"># ecliptic_J2000_frame</span></span></code></pre></div>
+<p><strong>事前検証結果（2025-01-01 00:00 UTC）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>フレーム</th>
+<th>太陽黄経</th>
+<th>差分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ecliptic_J2000_frame</code>（J2000固定）</td>
+<td>280.464305°</td>
+<td>基準</td>
+</tr>
+<tr>
+<td><code>ecliptic_frame</code>（of-date）</td>
+<td>280.813613°</td>
+<td>+0.349308°（≈ 1257秒角）</td>
+</tr>
+</tbody>
+</table>
+<p>差分 0.349°
+は理論的な歳差量（0.349°）と一致し、<code>ecliptic_frame</code> が
+of-date フレームであることが確認できる。</p>
+<h3 id="修正後のスクリプト構成">2.2 修正後のスクリプト構成</h3>
+<p>修正版スクリプトでは以下のフレームを使用する：</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skyfield.framelib <span class="im">import</span> ecliptic_frame, ecliptic_J2000_frame</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># of-date（修正版）</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ofdate_ecliptic <span class="op">=</span> apparent.frame_latlon(ecliptic_frame)     <span class="co"># of-date</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>skyfield_ofdate <span class="op">=</span> ofdate_ecliptic[<span class="dv">1</span>].degrees</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># J2000固定（修正版）</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>j2000_ecliptic <span class="op">=</span> apparent.frame_latlon(ecliptic_J2000_frame) <span class="co"># J2000</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>skyfield_j2000 <span class="op">=</span> j2000_ecliptic[<span class="dv">1</span>].degrees</span></code></pre></div>
+<hr />
+<h2 id="再検証結果corrected-results">3. 再検証結果（Corrected
+Results）</h2>
+<h3 id="年テストケース前報と同一条件">3.1
+1983年テストケース（前報と同一条件）</h3>
+<p><strong>観測条件：</strong> 1983年7月5日 15:42 JST（06:42
+UTC）、千葉県松戸市</p>
+<p><strong>計算結果（修正版）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>エンジン</th>
+<th>フレーム</th>
+<th>太陽黄経</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swiss Ephemeris</td>
+<td>tropical</td>
+<td>102.694627°</td>
+</tr>
+<tr>
+<td>Skyfield</td>
+<td>of-date（<code>ecliptic_frame</code>）</td>
+<td>102.694636°</td>
+</tr>
+<tr>
+<td>Skyfield</td>
+<td>J2000固定（<code>ecliptic_J2000_frame</code>）</td>
+<td>102.929687°</td>
+</tr>
+<tr>
+<td>Skyfield</td>
+<td><code>ecliptic_latlon()</code></td>
+<td>102.929687°</td>
+</tr>
+</tbody>
+</table>
+<p><strong>差分分析：</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>比較</th>
+<th>差分</th>
+<th>解釈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swiss − Skyfield of-date</td>
+<td><strong>−0.000009°（−0.032”）</strong></td>
+<td>ほぼ完全一致 ✅</td>
+</tr>
+<tr>
+<td>Swiss − Skyfield J2000</td>
+<td>−0.235060°（−846.2”）</td>
+<td>17年分の歳差に相当</td>
+</tr>
+</tbody>
+</table>
+<p><strong>理論検証：</strong> 1983年は J2000 より 17
+年前であり、歳差量は 17 × 50.29” = 854.9”。実測差分 846.2”
+と概ね一致する（差は章動等の影響）。</p>
+<h3 id="年検証追加検証">3.2 2025年検証（追加検証）</h3>
+<p><strong>観測条件：</strong> 2025年1月1日 00:00 UTC</p>
+<p><strong>計算結果：</strong></p>
+<table>
+<thead>
+<tr>
+<th>エンジン</th>
+<th>フレーム</th>
+<th>太陽黄経</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swiss Ephemeris</td>
+<td>tropical</td>
+<td>280.813646°</td>
+</tr>
+<tr>
+<td>Skyfield</td>
+<td>of-date（<code>ecliptic_frame</code>）</td>
+<td>280.813613°</td>
+</tr>
+<tr>
+<td>Skyfield</td>
+<td>J2000固定（<code>ecliptic_J2000_frame</code>）</td>
+<td>280.464305°</td>
+</tr>
+</tbody>
+</table>
+<p><strong>差分分析：</strong></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>比較</th>
+<th>差分</th>
+<th>解釈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swiss − Skyfield of-date</td>
+<td><strong>+0.000033°（+0.12”）</strong></td>
+<td>ほぼ完全一致 ✅</td>
+</tr>
+<tr>
+<td>Swiss − Skyfield J2000</td>
+<td>+0.349341°（+1257.6”）</td>
+<td>25年分の歳差に相当</td>
+</tr>
+</tbody>
+</table>
+<h3 id="木星水星での確認2025年1月1日">3.3
+木星・水星での確認（2025年1月1日）</h3>
+<table>
+<thead>
+<tr>
+<th>天体</th>
+<th>Swiss</th>
+<th>Skyfield of-date</th>
+<th>差分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>太陽</td>
+<td>280.813646°</td>
+<td>280.813613°</td>
+<td>0.12”</td>
+</tr>
+<tr>
+<td>木星</td>
+<td>73.215459°</td>
+<td>73.215460°</td>
+<td>0.004”</td>
+</tr>
+<tr>
+<td>水星</td>
+<td>259.870023°</td>
+<td>259.869981°</td>
+<td>0.15”</td>
+</tr>
+</tbody>
+</table>
+<p>全天体で Swiss と Skyfield of-date が 0.2
+秒角以内で一致。<strong>Swiss Ephemeris
+は全天体でof-dateを正しく計算していることが確認された。</strong></p>
+<hr />
+<h2 id="考察discussion">4. 考察（Discussion）</h2>
+<h3 id="混乱の原因skyfield-のフレーム命名">4.1 混乱の原因：Skyfield
+のフレーム命名</h3>
+<p>今回の誤りの直接原因は、Skyfield の <code>ecliptic_frame</code>
+という名前が「of-date
+フレーム」であることを直感的に示していないことにある。</p>
+<p>通常、“frame” という名称は特定のエポックを想起させない。一方
+<code>ecliptic_J2000_frame</code> は名称から J2000
+固定であることが明確である。この命名の非対称性が混乱を招いた。</p>
+<p><strong>フレーム名の対称的な理解（推奨）：</strong></p>
+<pre><code>ecliptic_frame       → &quot;ecliptic_ofdate_frame&quot; と読み替えると直感的
+ecliptic_J2000_frame → J2000固定、名称から明確</code></pre>
+<h3 id="swiss-ephemeris-の実装評価">4.2 Swiss Ephemeris の実装評価</h3>
+<p>今回の再検証により、Swiss Ephemeris
+はドキュメントに記載された通りの動作をしていることが確認された。</p>
+<ul>
+<li><strong>ドキュメントの記述：</strong> tropical =
+of-date（当代の春分点基準）</li>
+<li><strong>実装の実態：</strong> of-date（Skyfield の
+<code>ecliptic_frame</code> と 0.2 秒角以内で一致）</li>
+<li><strong>評価：</strong> 実装とドキュメントは一致している ✅</li>
+</ul>
+<p>前報で主張した「ドキュメントと実装の乖離」は存在しなかった。</p>
+<h3 id="前報二重補正問題の訂正">4.3 前報「二重補正問題」の訂正</h3>
+<p>前報では、「Swiss が J2000
+を使用しているため、サイデリアル計算で二重補正が発生する」と主張した。</p>
+<p>しかし Swiss は of-date
+を正しく実装しているため、標準的なサイデリアル計算：</p>
+<pre><code>サイデリアル黄経 = Swiss tropical（of-date） − アヤナムサ（of-date定義）</code></pre>
+<p>は正しい。アヤナムサ自体が of-date
+フレームで定義されているため、両者のフレームが一致しており、二重補正は発生しない。</p>
+<p><strong>前報の「二重補正問題」の記述はすべて誤りであり、訂正する。</strong></p>
+<h3 id="検証方法論への教訓">4.4 検証方法論への教訓</h3>
+<p>本件から得られる教訓：</p>
+<ol type="1">
+<li><strong>フレーム定義の事前確認：</strong>
+天文計算ライブラリのフレームを使用する際、既知の歳差量と差分が一致するかを事前に確認する</li>
+<li><strong>複数エポックでの検証：</strong>
+1点のみの比較では一致の方向性を誤りやすい。J2000
+より前と後の両方で検証することで、フレームの誤特定を防げる</li>
+<li><strong>ライブラリドキュメントの精読：</strong>
+名称が直感に反する場合、必ずドキュメントで定義を確認する</li>
+</ol>
+<hr />
+<h2 id="結論conclusion">5. 結論（Conclusion）</h2>
+<p>本論文は前報（v3、DOI:
+https://doi.org/10.5281/zenodo.18767251）の訂正を目的として執筆した。</p>
+<p><strong>訂正内容：</strong></p>
+<ol type="1">
+<li><p><strong>前報の主張「Swiss Ephemeris は J2000
+を使用している」は誤りである。</strong><br />
+Swiss Ephemeris は
+of-date（tropical）座標系をドキュメント通り正しく実装している。</p></li>
+<li><p><strong>誤りの原因：</strong> 検証スクリプトにおいて Skyfield の
+<code>ecliptic_frame</code>（of-date）を “J2000”
+と誤ラベルしたため。</p></li>
+<li><p><strong>前報の「二重補正問題」の記述はすべて誤りである。</strong><br />
+Swiss の tropical
+出力（of-date）からアヤナムサを引くサイデリアル計算は正しい。</p></li>
+<li><p><strong>正しい検証結果：</strong><br />
+Swiss Ephemeris と Skyfield の of-date
+フレーム（<code>ecliptic_frame</code>）は 0.2
+秒角以内で一致する。</p></li>
+</ol>
+<hr />
+<h2 id="参考文献references">6. 参考文献（References）</h2>
+<h3 id="天体暦座標系">6.1 天体暦・座標系</h3>
+<ul>
+<li>Folkner, W. M., Williams, J. G., Boggs, D. H., Park, R. S., &amp;
+Kuchynka, P. (2014). <em>The planetary and lunar ephemerides DE430 and
+DE431</em>. Interplanetary Network Progress Report, 196.</li>
+<li>IAU SOFA Board (2021). <em>IAU SOFA Software Collection</em>.
+http://www.iausofa.org</li>
+<li>Lieske, J. H., et al. (1977). Expressions for the precession
+quantities based upon the IAU (1976) system of astronomical constants.
+<em>Astronomy and Astrophysics</em>, 58, 1–16.</li>
+</ul>
+<h3 id="ソフトウェアライブラリ">6.2 ソフトウェア・ライブラリ</h3>
+<ul>
+<li>Rhodes, B. (2019). <em>Skyfield: High precision research-grade
+positions for planets and Earth satellites generator</em>. Astrophysics
+Source Code Library, record ascl:1907.024.
+https://rhodesmill.org/skyfield/</li>
+<li>Dieter Koch &amp; Alois Treindl (1997–). <em>Swiss Ephemeris</em>.
+Astrodienst AG. https://www.astro.com/swisseph/</li>
+<li>Ventura, J. (2016). <em>flatlib: Traditional Western Astrology with
+Python</em>. https://github.com/flatangle/flatlib</li>
+</ul>
+<h3 id="前報">6.3 前報</h3>
+<ul>
+<li>志賀高史 (2026).
+<em>占星術ソフトウェアにおける座標系の誤解：用語と実装の乖離、そして定義の曖昧さ</em>（v3）.
+Zenodo. https://doi.org/10.5281/zenodo.18767251</li>
+</ul>
+<hr />
+<h2 id="付録appendix">7. 付録（Appendix）</h2>
+<h3 id="修正版検証スクリプト">7.1 修正版検証スクリプト</h3>
+<p>本論文に付属するスクリプトは v3 からの修正版である。</p>
+<h4 id="a.1-フレームの事前検証スクリプト">A.1
+フレームの事前検証スクリプト</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">&quot;&quot;&quot;フレーム定義の事前検証：ecliptic_frame が of-date であることを確認&quot;&quot;&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skyfield.api <span class="im">import</span> load</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> skyfield.framelib <span class="im">import</span> ecliptic_frame, ecliptic_J2000_frame</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ts <span class="op">=</span> load.timescale()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>eph <span class="op">=</span> load(<span class="st">&#39;de440s.bsp&#39;</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> ts.utc(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>earth <span class="op">=</span> eph[<span class="st">&#39;earth&#39;</span>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>sun <span class="op">=</span> eph[<span class="st">&#39;sun&#39;</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>apparent <span class="op">=</span> earth.at(t).observe(sun).apparent()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>_, lon_ofdate, _ <span class="op">=</span> apparent.frame_latlon(ecliptic_frame)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>_, lon_j2000, _  <span class="op">=</span> apparent.frame_latlon(ecliptic_J2000_frame)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>diff <span class="op">=</span> lon_ofdate.degrees <span class="op">-</span> lon_j2000.degrees</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;ecliptic_frame  (of-date): </span><span class="sc">{</span>lon_ofdate<span class="sc">.</span>degrees<span class="sc">:.6f}</span><span class="ss">°&quot;</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;ecliptic_J2000_frame (J2000): </span><span class="sc">{</span>lon_j2000<span class="sc">.</span>degrees<span class="sc">:.6f}</span><span class="ss">°&quot;</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;差分: </span><span class="sc">{</span>diff<span class="sc">:.6f}</span><span class="ss">°（</span><span class="sc">{</span>diff<span class="op">*</span><span class="dv">3600</span><span class="sc">:.2f}</span><span class="ch">\&quot;</span><span class="ss">）&quot;</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;理論歳差量（25年）: </span><span class="sc">{</span><span class="dv">25</span><span class="op">*</span><span class="fl">50.29</span><span class="op">/</span><span class="dv">3600</span><span class="sc">:.6f}</span><span class="ss">°（</span><span class="sc">{</span><span class="dv">25</span><span class="op">*</span><span class="fl">50.29</span><span class="sc">:.2f}</span><span class="ch">\&quot;</span><span class="ss">）&quot;</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 出力例:</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ecliptic_frame  (of-date): 280.813613°</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ecliptic_J2000_frame (J2000): 280.464305°</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 差分: 0.349308°（1257.51&quot;）</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 理論歳差量（25年）: 0.349236°（1257.25&quot;）</span></span></code></pre></div>
+<h4 id="a.2-swiss-ephemeris-vs-skyfield-比較スクリプト修正版">A.2 Swiss
+Ephemeris vs Skyfield 比較スクリプト（修正版）</h4>
+<p>修正されたスクリプトは本論文と同じフォルダの以下のファイルを参照：</p>
+<ul>
+<li><code>1_verify_j2000_vs_ofdate_v4.py</code> — J2000 と of-date
+の差の検証（修正版）</li>
+<li><code>3_compare_all_engines_v4.py</code> — Swiss vs Skyfield
+の全フレーム比較（修正版）</li>
+</ul>
+<p><strong>実行方法：</strong></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 事前準備</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install skyfield flatlib</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 実行</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 1_verify_j2000_vs_ofdate_v4.py</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> 3_compare_all_engines_v4.py</span></code></pre></div>
+<h3 id="v3との主要な数値比較">7.2 v3との主要な数値比較</h3>
+<table>
+<thead>
+<tr>
+<th>比較</th>
+<th>v3の記述（誤）</th>
+<th>v4の正しい値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swiss vs “J2000”</td>
+<td>0.00002°（一致）</td>
+<td>0.000009°（of-dateとの一致）</td>
+</tr>
+<tr>
+<td>Swiss vs “of-date”</td>
+<td>0.231°（不一致）</td>
+<td>0.235°（J2000との差分）</td>
+</tr>
+<tr>
+<td>結論</td>
+<td>Swiss = J2000</td>
+<td>Swiss = of-date ✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用語集">7.3 用語集</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>用語</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J2000</td>
+<td>2000年1月1.5日（J2000.0）を基準エポックとする固定座標系。春分点方向が固定。</td>
+</tr>
+<tr>
+<td>of-date</td>
+<td>観測時点の春分点を基準とする座標系。歳差運動により基準方向が年々変化する。</td>
+</tr>
+<tr>
+<td>tropical</td>
+<td>占星術における “of-date” に相当。季節（春分点）基準の黄道座標。</td>
+</tr>
+<tr>
+<td>歳差運動</td>
+<td>地球の自転軸の向きが約26,000年周期で変化する現象。春分点は年約50.3”
+西へ移動。</td>
+</tr>
+<tr>
+<td>アヤナムサ</td>
+<td>トロピカル（of-date）春分点からサイデリアル春分点（固定恒星基準）までの角度。</td>
+</tr>
+<tr>
+<td>ecliptic_frame</td>
+<td>Skyfield のフレーム。<strong>of-date
+黄道</strong>を使用（名称に注意）。</td>
+</tr>
+<tr>
+<td>ecliptic_J2000_frame</td>
+<td>Skyfield のフレーム。<strong>J2000 固定黄道</strong>を使用。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="謝辞acknowledgments">謝辞（Acknowledgments）</h2>
+<p>本訂正論文の執筆にあたり、Stella.me OS
+の開発において使用した以下のオープンソースソフトウェアに謝意を表する。</p>
+<ul>
+<li>Brandon Rhodes 氏による <strong>Skyfield</strong>
+ライブラリ（https://rhodesmill.org/skyfield/）</li>
+<li>NASA JPL による <strong>DE440s</strong> 惑星暦</li>
+<li>Dieter Koch &amp; Alois Treindl による <strong>Swiss
+Ephemeris</strong>（https://www.astro.com/swisseph/）</li>
+</ul>
+<hr />
+<h2 id="連絡先contact">連絡先（Contact）</h2>
+<ul>
+<li><strong>Email</strong>: shigatakashi.cw@gmail.com</li>
+<li><strong>Stella.me OS</strong>: 独自天文計算エンジン（JPL DE440s +
+Skyfield ベース）</li>
+</ul>
+<hr />
+<h2 id="ライセンス">📄 ライセンス</h2>
+<p>本論文は <strong>CC BY 4.0</strong>（Creative Commons Attribution 4.0
+International）の下で公開する。</p>
+<p>引用形式（APA）:<br />
+志賀高史 (2026). <em>自己再検証：Swiss Ephemeris の座標系実装について —
+前報（v3）の訂正と正しい検証結果</em>（v4）. Zenodo.
+https://doi.org/10.5281/zenodo.18772796</p>
+<p>前報引用:<br />
+志賀高史 (2026).
+<em>占星術ソフトウェアにおける座標系の誤解：用語と実装の乖離、そして定義の曖昧さ</em>（v3）.
+Zenodo. https://doi.org/10.5281/zenodo.18767251</p>
+<hr />
+<h2 id="更新履歴change-log">📝 更新履歴（Change Log）</h2>
+<h3 id="version-4.0訂正版">Version 4.0（訂正版）</h3>
+<ul>
+<li>v3 の核心的誤り（フレームラベルの逆転）を訂正</li>
+<li>正しいフレームを用いた再検証結果を掲載</li>
+<li>「二重補正問題」の記述を全面訂正</li>
+<li>修正版検証スクリプトを付属</li>
+</ul>
+<h3 id="version-3.0訂正元">Version 3.0（訂正元）</h3>
+<ul>
+<li>DOI: https://doi.org/10.5281/zenodo.18767251</li>
+<li>主張：Swiss Ephemeris は J2000
+を使用（<strong>本訂正論文により撤回</strong>）</li>
+</ul>
+</body>
+</html>

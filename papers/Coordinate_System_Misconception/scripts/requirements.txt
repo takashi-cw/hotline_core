@@ -1,0 +1,20 @@
+# 検証スクリプトに必要なPythonパッケージ
+
+# 天文計算ライブラリ
+skyfield>=1.45
+jplephem>=2.15
+sgp4>=2.20
+
+# Swiss Ephemeris
+pyswisseph>=2.10.3
+
+# 数値計算
+numpy>=1.20.0
+
+# タイムゾーン処理
+pytz>=2021.1
+
+# flatlib (オプション - 一部のスクリプトで必要)
+# PyPI版が不安定な場合は、以下のコマンドで直接インストール：
+# pip install git+https://github.com/flatangle/flatlib.git
+
